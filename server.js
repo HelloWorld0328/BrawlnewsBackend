@@ -4,6 +4,13 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); // 허용할 도메인을 설정합니다.
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 app.use(bodyParser.json()); // JSON 데이터 파싱
 app.use(bodyParser.urlencoded({ extended: true }));
 
