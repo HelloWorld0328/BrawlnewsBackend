@@ -25,15 +25,20 @@ function writeJson(data) {
   fs.writeFileSync(jsonFilePath, JSON.stringify(data, null, 2), "utf-8");
 }
 
-app.get("/read",(req,res)=>{
-  const posts = readJson()
-  res.json(posts)
-})
+// 루트 경로
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
 
-app.post("/write",(req,res)=>{
-  const get = req.body;
-  const reqjsondata=JSON.stringify(get)
-  const reqdata=JSON.parse(reqjsondata)
+// 모든 포스트 가져오기
+app.get('/posts', (req, res) => {
+  const posts = readJson();
+  res.json(posts);
+});
+
+// 새로운 포스트 추가
+app.post('/upload', (req, res) => {
+  const reqdata = req.body;
   console.log(reqdata);
 
   // JSON 파일에서 데이터 읽기
@@ -46,8 +51,8 @@ app.post("/write",(req,res)=>{
   writeJson(posts);
 
   res.json({ message: '데이터가 성공적으로 추가되었습니다.' });
-})
+});
 
-app.listen(port,()=>{
-  console.log(`서버가 포트 ${port}에서 실행중 입니다.`)
-})
+app.listen(port, () => {
+  console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
+});
