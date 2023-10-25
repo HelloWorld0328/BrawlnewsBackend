@@ -3,35 +3,5 @@
       "name": "rdy",
       "title": "테스트",
       "content": "테스트글일수도 있다. 아닌가?XSS공격<br><span>sdgs</span>"
-    },
-    {
-      "name": "ㅁㄴㅇㅁㄴㅇ",
-      "title": "ㅁㄴㅇㅁㄴㅇ",
-      "content": "ㅁㄴㅇㅁㄴㅇ"
-    },
-    {
-      "name": "ㅇㅇㅇ",
-      "title": "ㄴㄴㄴ",
-      "content": "ㅁㅁㅁ"
-    },
-    {
-      "name": "ㅇㄹㅇㄹ",
-      "title": "ㅇㄹㅇㄹ",
-      "content": "\"'"
-    },
-    {
-      "name": "ㄴㅇㄹ",
-      "title": "ㄴㅇㄹ",
-      "content": "\"'"
-    },
-    {
-      "name": "ㄴㅇㄹㄴㅇㄹ",
-      "title": "ㄴㅇㄹㄴㅇ",
-      "content": "\""
-    },
-    {
-      "name": "ㅊㅊㅊ",
-      "title": "ㅋㅋㅋ",
-      "content": "\\\"\\'"
     }
   ]
