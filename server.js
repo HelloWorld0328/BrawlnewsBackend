@@ -44,6 +44,12 @@ app.get('/posts', (req, res) => {
   const posts = readJson();
   res.json(posts);
 });
+app.get('/index', (req, res) => {
+  const posts = readJson();
+  const datapost=posts
+  const len=datapost.length
+  res.send(len)
+});
 
 // 새로운 포스트 추가
 app.post('/upload', (req, res) => {
