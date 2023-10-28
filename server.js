@@ -53,7 +53,7 @@ app.get('/index', (req, res) => {
 
 // 새로운 포스트 추가
 app.post('/upload', (req, res) => {
-  const reqdata = req.body;
+  let reqdata = req.body;
   // JSON 파일에서 데이터 읽기
   const posts = readJson();
   reqdata.id=readJson().length
