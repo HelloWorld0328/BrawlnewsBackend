@@ -67,6 +67,33 @@ app.post('/upload', (req, res) => {
 
   res.json({ message: `데이터가 성공적으로 추가되었습니다.,${reqdata}` });
 });
+app.get('/posts', (req, res) => {
+  const posts = readJson();
+  res.json(posts);
+});
+app.get('/index', (req, res) => {
+  const posts = readJson();
+  const datapost=posts
+  const len=datapost.length
+  res.send(len)
+});
+
+// 댓글
+app.post('/comment', (req, res) => {
+  let reqdata = req.body;
+  // JSON 파일에서 데이터 읽기
+  let posts = readJson()
+  console.log(reqdata);
+  posts[reqdata.id].comment.push({name:reqdata.name,comment:reqdata.comment})
+
+  // 새로운 데이터 추가
+  postid.comment.push(posts);
+
+  // JSON 파일에 데이터 저장
+  writeJson(posts);
+
+  res.json({ message: `데이터가 성공적으로 추가되었습니다.,${reqdata}` });
+});
 
 app.listen(port, () => {
   console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
