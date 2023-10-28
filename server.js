@@ -65,7 +65,7 @@ app.post('/upload', (req, res) => {
   // JSON 파일에 데이터 저장
   writeJson(posts);
 
-  res.json({ message: '데이터가 성공적으로 추가되었습니다.' });
+  res.json({ message: `데이터가 성공적으로 추가되었습니다.,${reqdataf}` });
 });
 
 app.listen(port, () => {
