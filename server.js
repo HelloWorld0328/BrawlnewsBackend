@@ -3,7 +3,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
-const cors = require('cors');
+const cors = require('cors')
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -35,13 +35,15 @@ app.get('/posts', (req, res) => {
 
 app.get('/index', (req, res) => {
   const posts = readJson();
-  res.send(posts.length);
+  const datapost = posts;
+  const len = datapost.length;
+  res.send(len);
 });
 
 app.post('/upload', (req, res) => {
   let reqdata = req.body;
   const posts = readJson();
-  reqdata.id = posts.length;
+  reqdata.id = readJson().length;
   posts.push(reqdata);
   writeJson(posts);
   res.json({ message: `데이터가 성공적으로 추가되었습니다.,${reqdata}` });
@@ -49,17 +51,10 @@ app.post('/upload', (req, res) => {
 
 app.post('/comment', (req, res) => {
   let reqdata = req.body;
-  const posts = readJson();
-  if (reqdata.id < posts.length) {
-    if (!posts[reqdata.id].comment) {
-      posts[reqdata.id].comment = [];
-    }
-    posts[reqdata.id].comments.push({ name: reqdata.name, comment: reqdata.comment });
-    writeJson(posts);
-    res.json({ message: `댓글이 성공적으로 추가되었습니다.,${reqdata}` });
-  } else {
-    res.status(400).json({ error: '유효하지 않은 ID입니다.' });
-  }
+  let posts = readJson();
+  posts[reqdata.id].comments.push({ name: reqdata.name, comment: reqdata.comment });
+  writeJson(posts);
+  res.json({ message: `데이터가 성공적으로 추가되었습니다.,${reqdata}` });
 });
 
 app.listen(port, () => {
