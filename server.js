@@ -54,7 +54,7 @@ app.post('/comment', (req, res) => {
     if (!posts[reqdata.id].comment) {
       posts[reqdata.id].comment = [];
     }
-    posts[reqdata.id].comment.push({ name: reqdata.name, comment: reqdata.comment });
+    posts[reqdata.id].comments.push({ name: reqdata.name, comment: reqdata.comment });
     writeJson(posts);
     res.json({ message: `댓글이 성공적으로 추가되었습니다.,${reqdata}` });
   } else {
