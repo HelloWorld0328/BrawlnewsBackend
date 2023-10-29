@@ -52,10 +52,19 @@ app.post('/upload', (req, res) => {
 app.post('/comment', (req, res) => {
   let reqdata = req.body;
   let posts = readJson();
-  posts[reqdata.id].comments.push({ name: reqdata.name, comment: reqdata.comment });
-  writeJson(posts);
-  res.json({ message: `데이터가 성공적으로 추가되었습니다.,${reqdata}` });
+  const post = posts.find(p => p.id === reqdata.id);
+  if (post) {
+    if (!post.comments) {
+      post.comments = [];
+    }
+    post.comments.push({ name: reqdata.name, comment: reqdata.comment });
+    writeJson(posts);
+    res.json({ message: '댓글이 성공적으로 추가되었습니다.', reqdata });
+  } else {
+    res.status(404).json({ message: '해당 ID를 가진 포스트를 찾을 수 없습니다.' });
+  }
 });
+
 
 app.listen(port, () => {
   console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
