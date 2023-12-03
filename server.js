@@ -49,6 +49,42 @@ app.post('/upload', (req, res) => {
   res.json({ message: `데이터가 성공적으로 추가되었습니다.,${reqdata}` });
 });
 
+app.post('/viewup',(req,res)=>{
+  let data=req.body
+  const posts = readJson();
+  posts.view++
+  writeJson(posts)
+})
+
+app.listen(port, () => {
+  console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // app.post('/comment', (req, res) => {
 //   let reqdata = req.body;
 //   let posts = readJson();
@@ -66,6 +102,3 @@ app.post('/upload', (req, res) => {
 // });
 
 
-app.listen(port, () => {
-  console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
-});
