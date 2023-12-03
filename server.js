@@ -49,12 +49,19 @@ app.post('/upload', (req, res) => {
   res.json({ message: `데이터가 성공적으로 추가되었습니다.,${reqdata}` });
 });
 
-app.post('/viewup',(req,res)=>{
-  let data=req.body
+app.post('/viewup', (req, res) => {
+  let data = req.body;
   const posts = readJson();
-  posts.view++
-  writeJson(posts)
-})
+  const postId = data.id; // 요청으로부터 받은 포스트의 ID
+  const foundPost = posts.find(post => post.id === postId); // 해당 ID의 포스트 찾기
+  if (foundPost) {
+    foundPost.views++; // 조회수 증가
+    writeJson(posts);
+    res.json({ message: `포스트의 조회수가 증가되었습니다.,${foundPost}` });
+  } else {
+    res.status(404).json({ error: '포스트를 찾을 수 없습니다.' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
