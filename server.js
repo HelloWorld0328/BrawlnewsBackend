@@ -61,13 +61,31 @@ apps.post('/viewup', (req, res) => {
 });
 
 
-apps.post('/uploadcomment',(req,res)=>{
-  let data=req.body;
-  const posts=readJson()
-  const postId=data.id
-  posts[postId].comment.push({name:data.name,content:data.content})
-  writeJson(posts)
-})
+apps.post('/uploadcomment', (req, res) => {
+  const data = req.body;
+  const postId = data.id;
+  const commentData = {
+    name: data.name,
+    content: data.content
+  };
+
+  try {
+    const posts = readJson();
+    const foundPostIndex = posts.findIndex(post => post.id === postId);
+
+    if (foundPostIndex !== -1) {
+      // 해당 포스트를 찾았을 때만 댓글 추가
+      posts[foundPostIndex].comments.push(commentData);
+      writeJson(posts);
+      res.status(200).json({ message: '댓글이 성공적으로 추가되었습니다.' });
+    } else {
+      res.status(404).json({ error: '포스트를 찾을 수 없습니다.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: '서버 오류가 발생했습니다.' });
+  }
+});
+
 
 apps.listen(port, () => {
   console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
