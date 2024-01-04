@@ -5,9 +5,7 @@ const app = express();
 const port = 3030;
 const cors = require('cors');
 
-app.use(cors({
-  origin: 'https://brawlnews.kro.kr',
-}));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
