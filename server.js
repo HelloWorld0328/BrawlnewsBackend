@@ -5,19 +5,19 @@ const app = express();
 const port = 3030;
 const cors = require('cors');
 
-const whitelist = ["http://localhost:3000", "http://localhost:8081","http://172.23.96.1:3000","https://brawlnews.kro.kr","https://brawlnews.onrender.com"];
+// const whitelist = ["http://localhost:3000", "http://localhost:8081","http://172.23.96.1:3000","https://brawlnews.kro.kr","https://brawlnews.onrender.com"];
 
-const corsOptions = {
-  origin: function (origin, callback) { 
-    if (whitelist.indexOf(origin) !== -1) { // 만일 whitelist 배열에 origin인자가 있을 경우
-      callback(null, true); // cors 허용
-    } else {
-      callback(new Error("Not Allowed Origin!")); // cors 비허용
-    }
-  },
-};
+// const corsOptions = {
+//   origin: function (origin, callback) { 
+//     if (whitelist.indexOf(origin) !== -1) { // 만일 whitelist 배열에 origin인자가 있을 경우
+//       callback(null, true); // cors 허용
+//     } else {
+//       callback(new Error("Not Allowed Origin!")); // cors 비허용
+//     }
+//   },
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
