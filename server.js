@@ -5,7 +5,7 @@ const app = express();
 const port = 3030;
 const cors = require('cors');
 
-const whitelist = ["http://localhost:3000", "http://localhost:8081","http://172.23.96.1:3000"];
+const whitelist = ["http://localhost:3000", "http://localhost:8081","http://172.23.96.1:3000","https://brawlnews.kro.kr","https://brawlnews.onrender.com"];
 
 const corsOptions = {
   origin: function (origin, callback) { 
