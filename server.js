@@ -38,8 +38,6 @@ function writeJson(data) {
 
 
 app.get('/posts', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://brawlnews.kro.kr');
-
   const posts = readJson();
   res.json(posts);
 });
